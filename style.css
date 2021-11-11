@@ -1,4 +1,4 @@
-*
+body
 {
     padding: 0;
     margin:  0;
@@ -6,13 +6,14 @@
     color: white;
     display: flex;
     align-items: center;
+    font-size: 25px;
 }
 .menu
 {
     border: 5px solid red;
     background-color: wheat;
-    padding: 250px;
+    width: 250px;
+    padding: 25px;
     position: absolute;
     color: black;
-    
 }
