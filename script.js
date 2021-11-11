@@ -1,5 +1,5 @@
-console.clear()
-const doc = document
+console.clear();
+const doc = document;
 const des = {
     "Iceland":"<b>Исландия</b>:<br>Страна курортов и вулканов, одинокий остров в Холодном океане.",
     "Norway":"<b>Норвегия</b>:<br>Страна викингов, ранее проводили атаки и рейды, сейчас красивая страна с лесами.",
@@ -44,22 +44,26 @@ const des = {
     "Lebanon":"<b>Ливия</b>:<br>Мозаики, музеи, полупустыни, красиво. А вообще-то это тоже не Европа.",
     "Georgia":"<b>Грузия</b>:<br>Минеральные источники, чистые моря, красивые горы, и пальная кухня."
 }
-console.log(des)
-let c = 0
-const menu = doc.createElement('div')
-menu.className = 'menu'
+console.log(des);
+
+let c = 0;
+const menu = doc.createElement('div');
+menu.className = 'menu';
 addEventListener("click", e => {
-    if(e.target.alt)
-    {
-        c++
-        console.log(e)
-        menu.style.top  = e.layerY + 'px'
-        menu.innerHTML = des[e.target.alt]
-
-        e.layerX + 500 >= document.body.clientWidth ? menu.style.left = e.layerX - 300 + 'px' : menu.style.left = e.layerX + 'px'
-        e.layerY - (-menu.style.top.slice(0,-2)) >= document.body.clientHeight ? menu.style.top = e.layerY - 150 + 'px' : menu.style.top = e.layerY + 'px'
-
-        c % 2 == 0 ? doc.body.append(menu) : doc.getElementsByClassName('menu')[0] = null
-        console.log( e.layerY - (-menu.style.top.slice(0,-2)) )
+    if(!e.target.alt){
+        return;
     }
+   
+    c++;
+
+    menu.style.top  = `${ e.layerY + (  e.layerY + 500 >= doc.body.clientWidth   ) * -150 }px`;
+    menu.style.left = `${ e.layerX + (  e.layerX * 2   >= doc.body.clientHeight  ) * -300 }px`;
+
+    menu.innerHTML = des[e.target.alt];
+
+
+    c % 2 === 0 ? doc.body.append(menu) : doc.getElementsByClassName('menu')[0] = null;
+    console.log( e.layerY - (-menu.style.top.slice(0,-2)) );
+    console.log( e.layerY * 2 )
+    
 })
